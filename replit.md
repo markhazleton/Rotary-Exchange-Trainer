@@ -1,6 +1,6 @@
-# [Project name]
+# Rotary District 5680 Leadership Training
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A polished leadership training site for Rotary District 5680 members, based on the district's youth exchange site branding and a facilitator training script.
 
 ## Run & Operate
 

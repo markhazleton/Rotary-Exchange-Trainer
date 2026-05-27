@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "Xwja6Ak98iYHtUjH7I7Xd"
+uri = "file://artifacts/rotary-training/public/images/service-hero.jpg"
+type = "image"
+title = "A professional community service meeting or project with diverse people collaborating and taking action"
