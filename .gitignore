@@ -5,8 +5,6 @@ dist
 tmp
 out-tsc
 *.tsbuildinfo
-.expo
-.expo-shared
 
 # dependencies
 node_modules
@@ -44,6 +42,10 @@ Thumbs.db
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
-# Replit
-.cache/
-.local/
+# local environment files
+.env
+.env.local
+.env.*.local
+
+# DevSpark — personal overrides (never commit)
+.documentation/*/commands/

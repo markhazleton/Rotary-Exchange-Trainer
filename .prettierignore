@@ -1,0 +1,11 @@
+.codex/
+.devspark/
+.knowledge/index.json
+.knowledge/ontology/coverage.json
+**/dist/
+**/node_modules/
+**/*.tsbuildinfo
+docs/reference/
+packages/api-client/src/generated/
+packages/api-schema/src/generated/
+pnpm-lock.yaml

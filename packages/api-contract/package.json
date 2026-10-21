@@ -1,0 +1,11 @@
+{
+  "name": "@rotary-exchange-trainer/api-contract",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "orval --config ./orval.config.ts && node ../../scripts/normalize-generated.mjs"
+  },
+  "devDependencies": {
+    "orval": "^8.43.0"
+  }
+}
