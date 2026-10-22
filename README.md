@@ -49,7 +49,8 @@ which answers `/api` requests from fixtures:
 - Writes (`POST`, `PUT`, `PATCH`, `DELETE`) return `405 Read-only demo`, and paths outside the
   contract return `404 Not mocked`.
 - A banner marks every page as a preview. The build also copies `index.html` to `404.html` so
-  client-side routes survive a refresh on GitHub Pages.
+  client-side routes survive a refresh on GitHub Pages, and sets `noindex, nofollow` so search
+  engines skip the preview.
 
 Run it locally with `pnpm dev:demo`, or `pnpm build:demo` followed by
 `pnpm --filter @rotary-exchange-trainer/web run preview:demo` and open

@@ -26,6 +26,25 @@ function spaFallback(): Plugin {
   };
 }
 
+// The public preview should not compete with the real site in search results.
+function noIndex(): Plugin {
+  return {
+    name: "no-index",
+    transformIndexHtml(html) {
+      const robots = /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/;
+
+      if (!robots.test(html)) {
+        throw new Error('index.html is missing <meta name="robots">');
+      }
+
+      return html.replace(
+        robots,
+        '<meta name="robots" content="noindex, nofollow" />',
+      );
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const port = Number(env.VITE_PORT ?? 5173);
@@ -47,7 +66,12 @@ export default defineConfig(({ mode }) => {
     define: {
       "import.meta.env.VITE_API_MODE": JSON.stringify(apiMode),
     },
-    plugins: [react(), tailwindcss(), msw(), mode === "demo" && spaFallback()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      msw(),
+      mode === "demo" && [noIndex(), spaFallback()],
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
