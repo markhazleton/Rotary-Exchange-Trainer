@@ -29,6 +29,13 @@ export default defineConfig({
       baseUrl: "/api",
       clean: true,
       prettier: true,
+      // MSW handlers for the static demo build. Faker data is only a fallback;
+      // apps/web/src/mocks supplies deterministic fixtures for each operation.
+      mock: {
+        generators: [
+          { type: "msw", baseUrl: "*/api", delay: false, useExamples: true },
+        ],
+      },
       override: {
         query: {
           version: 5,

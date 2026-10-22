@@ -1,7 +1,30 @@
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { msw } from "msw/vite";
+import { copyFile } from "node:fs/promises";
+import path from "node:path";
 import { fileURLToPath, URL } from "node:url";
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
+
+// Static hosts such as GitHub Pages serve 404.html for unknown paths, so a
+// copy of the app shell lets client-side routes survive a refresh.
+function spaFallback(): Plugin {
+  let outDir = "";
+
+  return {
+    name: "spa-fallback",
+    apply: "build",
+    configResolved(config) {
+      outDir = path.resolve(config.root, config.build.outDir);
+    },
+    async closeBundle() {
+      await copyFile(
+        path.join(outDir, "index.html"),
+        path.join(outDir, "404.html"),
+      );
+    },
+  };
+}
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -11,9 +34,20 @@ export default defineConfig(({ mode }) => {
     throw new Error(`Invalid VITE_PORT value: "${env.VITE_PORT}"`);
   }
 
+  const apiMode = env.VITE_API_MODE ?? "live";
+
+  if (apiMode !== "live" && apiMode !== "mock") {
+    throw new Error(`Invalid VITE_API_MODE value: "${apiMode}"`);
+  }
+
   return {
     base: env.BASE_PATH ?? "/",
-    plugins: [react(), tailwindcss()],
+    // Always a string literal, so live builds fold the mock guard in main.tsx
+    // away and msw() never emits the service worker.
+    define: {
+      "import.meta.env.VITE_API_MODE": JSON.stringify(apiMode),
+    },
+    plugins: [react(), tailwindcss(), msw(), mode === "demo" && spaFallback()],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),

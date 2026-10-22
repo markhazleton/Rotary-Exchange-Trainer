@@ -35,7 +35,7 @@ export default function Home() {
       <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center bg-primary overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/service-hero.jpg"
+            src={`${import.meta.env.BASE_URL}images/service-hero.jpg`}
             alt="Rotarians engaged in a community project"
             className="w-full h-full object-cover opacity-20"
           />

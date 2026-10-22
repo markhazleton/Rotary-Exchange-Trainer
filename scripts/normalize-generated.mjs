@@ -7,6 +7,7 @@ const repositoryRoot = path.resolve(
   "..",
 );
 const generatedFiles = [
+  "packages/api-client/src/generated/api.msw.ts",
   "packages/api-client/src/generated/api.schemas.ts",
   "packages/api-client/src/generated/api.ts",
   "packages/api-schema/src/generated/api.ts",

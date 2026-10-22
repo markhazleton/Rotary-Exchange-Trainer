@@ -4,12 +4,17 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./mocks": "./src/mocks.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "catalog:"
   },
   "peerDependencies": {
     "react": ">=18"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "msw": "^3.0.3"
   }
 }

@@ -14,10 +14,12 @@
     "dev": "pnpm --parallel --filter @rotary-exchange-trainer/api --filter @rotary-exchange-trainer/web run dev",
     "dev:api": "pnpm --filter @rotary-exchange-trainer/api run dev",
     "dev:web": "pnpm --filter @rotary-exchange-trainer/web run dev",
+    "dev:demo": "pnpm --filter @rotary-exchange-trainer/web run dev:demo",
     "generate": "pnpm --filter @rotary-exchange-trainer/api-contract run generate",
     "typecheck:packages": "tsc --build",
     "typecheck": "pnpm run typecheck:packages && pnpm --filter \"./apps/**\" --if-present run typecheck",
     "build": "pnpm run clean && pnpm run generate && pnpm run typecheck && pnpm --filter @rotary-exchange-trainer/api run build && pnpm --filter @rotary-exchange-trainer/web run build",
+    "build:demo": "pnpm run clean && pnpm run generate && pnpm run typecheck && pnpm --filter @rotary-exchange-trainer/web run build:demo",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
