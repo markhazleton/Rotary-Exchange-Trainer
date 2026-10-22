@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { ExternalLink } from "@/components/ui/external-link";
 
 export function Footer() {
   return (
@@ -40,14 +41,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
+                <ExternalLink
                   href="https://my.rotary.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="hover:text-accent transition-colors"
                 >
                   My Rotary
-                </a>
+                </ExternalLink>
               </li>
             </ul>
           </div>

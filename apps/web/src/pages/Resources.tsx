@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import {
   ExternalLink,
-  FileText,
-  Globe,
-  Shield,
-  BookOpen,
-  ScrollText,
-} from "lucide-react";
+  ExternalLinkGlyph,
+  linkHost,
+} from "@/components/ui/external-link";
+import { FileText, Globe, Shield, BookOpen, ScrollText } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -105,31 +103,30 @@ export default function Resources() {
         >
           {resources.map((resource, i) => (
             <motion.div key={i} variants={item}>
-              <a
+              <ExternalLink
                 href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                icon={false}
                 className="block h-full group"
                 data-testid={`resource-card-${i}`}
               >
-                <Card className="h-full border-border bg-card hover:border-accent hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                <Card className="h-full flex flex-col border-border bg-card hover:border-accent hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
                   <CardHeader>
                     {resource.icon}
-                    <CardTitle className="font-serif text-xl flex items-center justify-between">
+                    <CardTitle className="font-serif text-xl">
                       {resource.title}
-                      <ExternalLink
-                        size={18}
-                        className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity text-accent"
-                      />
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base leading-relaxed">
+                  <CardContent className="flex-1 flex flex-col gap-4">
+                    <CardDescription className="text-base leading-relaxed flex-1">
                       {resource.desc}
                     </CardDescription>
+                    <p className="flex items-center gap-1.5 text-sm font-medium text-primary group-hover:underline">
+                      {linkHost(resource.url)}
+                      <ExternalLinkGlyph />
+                    </p>
                   </CardContent>
                 </Card>
-              </a>
+              </ExternalLink>
             </motion.div>
           ))}
         </motion.div>
@@ -148,14 +145,12 @@ export default function Resources() {
             Log in to My Rotary to access the complete Learning Center and
             customized tools for your club role.
           </p>
-          <a
+          <ExternalLink
             href="https://my.rotary.org"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-block bg-accent text-accent-foreground px-8 py-3 rounded-md font-bold hover:bg-yellow-400 transition-colors relative z-10"
           >
             Go to My Rotary
-          </a>
+          </ExternalLink>
         </motion.div>
       </div>
     </div>

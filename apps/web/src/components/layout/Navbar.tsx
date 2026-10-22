@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ExternalLink } from "@/components/ui/external-link";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,15 +42,13 @@ export function Navbar() {
             >
               Resources
             </Link>
-            <a
+            <ExternalLink
               href="https://my.rotary.org"
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-accent text-accent-foreground px-5 py-2 rounded-md font-semibold hover:bg-yellow-400 transition-colors"
               data-testid="nav-login"
             >
               Member Login
-            </a>
+            </ExternalLink>
           </div>
 
           <div className="flex md:hidden items-center">
@@ -82,15 +81,13 @@ export function Navbar() {
             >
               Resources
             </Link>
-            <a
+            <ExternalLink
               href="https://my.rotary.org"
-              target="_blank"
-              rel="noopener noreferrer"
               className="block px-3 py-2 rounded-md text-base font-semibold text-accent"
               onClick={() => setIsOpen(false)}
             >
               Member Login
-            </a>
+            </ExternalLink>
           </div>
         </div>
       )}
